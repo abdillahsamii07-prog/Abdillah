@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>For Eliza ❤️</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* container animasi masuk */
+.container {
+    background: #f8eaea;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    width: 300px;
+    animation: fadeIn 1s ease;
+}
+
+/* animasi fade */
+@keyframes fadeIn {
+    from {opacity: 0; transform: scale(0.8);}
+    to {opacity: 1; transform: scale(1);}
+}
+
+.result {
+    display: none;
+}
+
+img {
+    width: 200px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    animation: zoom 2s infinite alternate;
+}
+
+/* zoom pelan */
+@keyframes zoom {
+    from {transform: scale(1);}
+    to {transform: scale(1.05);}
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* tombol yes berdenyut */
+.yes {
+    background: #ff4d6d;
+    color: white;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {transform: scale(1);}
+    50% {transform: scale(1.1);}
+    100% {transform: scale(1);}
+}
+
+.no {
+    background: gray;
+    color: white;
+    position: absolute;
+}
+
+/* hati jatuh */
+.heart {
+    position: fixed;
+    top: -10px;
+    color: red;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 💌 HALAMAN AWAL -->
+<div class="container" id="questionBox">
+    <img src="foto-awal.jpeg">
+    <h2>Do you love me Eliza Sitiani? 💖</h2>
+
+    <button class="yes" onclick="showResult()">Yes</button>
+    <button class="no" id="noBtn">No</button>
+</div>
+
+<!-- 💖 HALAMAN HASIL -->
+<div class="container result" id="resultBox">
+    <img src="foto-romantis.jpeg">
+    <h2>I knew it 😘❤️</h2>
+    <p>From Abdillah Samii 💌</p>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+
+// tombol no kabur 😆
+noBtn.addEventListener("mouseover", () => {
+    noBtn.style.left = Math.random() * 250 + "px";
+    noBtn.style.top = Math.random() * 250 + "px";
+});
+
+// pindah halaman + efek
+function showResult() {
+    document.getElementById("questionBox").style.display = "none";
+    document.getElementById("resultBox").style.display = "block";
+}
+
+// efek hati jatuh ❤️
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
